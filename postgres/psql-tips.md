@@ -35,9 +35,12 @@ WHERE id in (
 );
 ```
 
-Удалить транзакцию
+Просмотр запущеных процессов
 ```sql
-select * from pg_stat_activity where state='active';
+SELECT * from pg_stat_activity where state='active';
+```
+Удалить транзакцию(процесс)
+```sql
 SELECT pg_cancel_backend(<pid>)
-select pg_terminate_backend(<pid>);
+SELECT pg_terminate_backend(<pid>);
 ```

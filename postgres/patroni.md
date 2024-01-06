@@ -20,8 +20,8 @@ sudo systemctl status patroni
 
 This error usually means that PostgreSQL's request for a shared memory segment exceeded available memory, swap space, or huge pages. To reduce the request size (currently 55002005504 bytes), reduce PostgreSQL's shared memory usage, perhaps by reducing shared_buffers or max_connections
 
-
+```sh
 echo 'vm.nr_hugepages = 26404' >> /etc/sysctl.d/30-postgresql.conf
 echo 'vm.nr_hugepages_mempolicy = 26404' >> /etc/sysctl.d/30-postgresql.conf
-
 sysctl -p --system
+```
