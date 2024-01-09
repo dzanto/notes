@@ -8,27 +8,25 @@ cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx22
+  name: nginx1
 spec:
   containers:
   - name: nginx
     image: nginx
-    ports:
-    - containerPort: 80
     volumeMounts:
     - name: test-volume
       mountPath: /test
   volumes:
     - name: test-volume
       persistentVolumeClaim:
-        claimName: rwx-storage2
+        claimName: rwx-storage
 EOF
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: rwx-storage2
+  name: rwx-storage
 spec:
   accessModes:
     - ReadWriteMany
@@ -42,7 +40,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rwx-storage2
+  name: rwx-storage
 spec:
   accessModes:
     - ReadWriteMany
