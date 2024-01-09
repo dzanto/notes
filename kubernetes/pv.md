@@ -38,6 +38,20 @@ EOF
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rwo-storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: vsphere-csi-sc
+EOF
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: rwx-storage
@@ -45,7 +59,7 @@ spec:
   accessModes:
     - ReadWriteMany
   capacity:
-    storage: 2Gi
+    storage: 1Gi
   storageClassName: vsphere-csi-sc
   volumeMode: Filesystem
 EOF
