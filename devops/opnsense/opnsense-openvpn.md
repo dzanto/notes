@@ -31,4 +31,4 @@
 ### Конфиг для клиентов
 `VPN/OpenVPN/Client Export`
 
-Выбираем нужный сервер в `Remote Access Server` и в `Certificate` качаем конфиг.
+Выбираем нужный сервер в `Remote Access Server` и в `Certificate` качаем конфиг и высылаем его клиентам.
