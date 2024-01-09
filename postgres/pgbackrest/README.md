@@ -1,5 +1,8 @@
 # pgBackRest
 
+Все действия выполняем из под пользователя postgres
+> sudo su postgres
+
 Список бэкапов
 > pgbackrest info
 
