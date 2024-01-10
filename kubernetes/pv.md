@@ -19,7 +19,7 @@ spec:
   volumes:
     - name: test-volume
       persistentVolumeClaim:
-        claimName: rwx-storage
+        claimName: rwo-storage
 EOF
 
 cat <<EOF | kubectl apply -f -
