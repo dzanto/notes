@@ -18,7 +18,7 @@ psql
 # Обновление данных. Команда UPDATE
 https://metanit.com/sql/postgresql/3.4.php
 
-```
+```sql
 UPDATE имя_таблицы
 SET столбец1 = значение1, столбец2 = значение2, ... столбецN = значениеN
 [WHERE условие_обновления]
@@ -44,3 +44,15 @@ SELECT * from pg_stat_activity where state='active';
 SELECT pg_cancel_backend(<pid>)
 SELECT pg_terminate_backend(<pid>);
 ```
+
+Безопасное выполнение запросов в psql
+```sql
+begin;
+сам запрос;
+/* если всё выглядит плохо */
+rollback;
+/* если выглядит нормально */
+commit;
+```
+
+Безопасное выполнение запросов в Dbeaver - выключить `Auto-commit` в настройках базы `Edit connection/Connection settings/Initialization/Auto-commit`
