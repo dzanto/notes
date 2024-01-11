@@ -56,3 +56,17 @@ commit;
 ```
 
 Безопасное выполнение запросов в Dbeaver - выключить `Auto-commit` в настройках базы `Edit connection/Connection settings/Initialization/Auto-commit`
+
+Копирование из csv файла
+```
+"n","number"
+1,"10204110000010571695"
+2,"10204110000010574237"
+3,"10204110000010574291"
+```
+```sql
+COPY my_schema.my_table(first,second)
+FROM '/home/postgres/my.csv'
+DELIMITER ','
+CSV HEADER;
+```

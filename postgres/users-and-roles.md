@@ -67,3 +67,8 @@ GRANT "my_role" TO "my_user";
 CREATE ROLE "my_role" LOGIN PASSWORD 'my_password';
 CREATE DATABASE "my_db" WITH OWNER "my_user";
 ```
+
+Сменить владельца таблицы
+```sql
+ALTER TABLE my_schema.my_table OWNER TO my_user;
+```
