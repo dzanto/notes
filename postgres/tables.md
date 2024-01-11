@@ -10,4 +10,7 @@ CREATE TABLE my_schema.my_table
 );
 
 DROP TABLE my_schema.my_table;
+
+-- TRUNCATE - Удаление всех данных из таблицы. В отличие от DROP TABLE нет необходимости настраивать права.
+TRUNCATE TABLE my_schema.my_table;
 ```
