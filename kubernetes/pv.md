@@ -41,6 +41,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: rwo-storage
+  labels:
+    app: rwo
 spec:
   accessModes:
     - ReadWriteOnce

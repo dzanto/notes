@@ -121,5 +121,12 @@ semanage export -f my-selinux.txt
 semanage import -f my-selinux.txt
 ```
 
+## Логи SElinux
+
+Логи находятся в /var/log/audit/audit.log
+
+Посмотреть ошибки selinux, с рекомендациями для исправления
+sealert -a /var/log/audit/audit.log
+
 # Ansible модуль для управления SELinux
 https://docs.ansible.com/ansible/latest/collections/community/general/sefcontext_module.html
