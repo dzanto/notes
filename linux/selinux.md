@@ -73,6 +73,8 @@ sudo semanage fcontext -l
 Что бы решить это:
 ```bash
 semanage port -a -t ssh_port_t -p tcp 2233
+# или пример для nginx/apache
+semanage port -a -t http_port_t -p tcp 5080
 ```
 Для временной смены контекста файлов используется команда `chcon`
 ```bash
@@ -97,9 +99,11 @@ restorecon -v /var/www/html/index.html
 `semanage fcontext` - меняет контекст в политике(`semanage fcontext -l`), а не сразу в файле. Что бы контекс применился к файлу необходимо дополнительно выполнить `chcon` или `restorecon`
 
 
-## SELinux boolean
-Просмотр boolean
+## SELinux boolean, параметризованные политики
+Это заранее преданстроенные политики, которые можно включть.
+
 ```sh
+# Просмотр boolean
 semanage boolean -l
 # или
 getsebool -a
@@ -127,6 +131,36 @@ semanage import -f my-selinux.txt
 
 Посмотреть ошибки selinux, с рекомендациями для исправления
 sealert -a /var/log/audit/audit.log
+
+## Модули
+```sh
+# список модулей
+semodule -l
+# удалить модуль my_nginx
+semodule -r my_nginx
+# создать модуль httpd_add на основе сообщений в /var/log/audit/audit.log
+audit2allow -M httpd_add --debug < /var/log/audit/audit.log
+```
+
+## Добавление правил
+Например если запустить nginx на неразрешенном порту
+```sh
+ausearch -c 'nginx' --raw | audit2allow -M my_nginx
+semodule -i my_nginx.pp
+```
+ausearch - ищет ошибки в /var/log/audit/audit.log
+audit2allow - генерирует на основании вывода ausearch файлы my_nginx.pp(,бинарный) и my_nginx.te(текстовый)
+semodule - применяет модуль my_nginx
+
+## Просмотр к каким меткам относится 80 порт
+
+seinfo --portcon=80
+
+## /opt
+
+selinux не работает в /opt каталоге
+
+
 
 # Ansible модуль для управления SELinux
 https://docs.ansible.com/ansible/latest/collections/community/general/sefcontext_module.html
