@@ -19,7 +19,7 @@ spec:
   volumes:
     - name: test-volume
       persistentVolumeClaim:
-        claimName: rwo-storage
+        claimName: rwx-storage
 EOF
 
 cat <<EOF | kubectl apply -f -
@@ -32,7 +32,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
+      storage: 11Mi
   storageClassName: vsphere-csi-sc
 EOF
 
@@ -48,7 +48,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Mi
   storageClassName: vsphere-csi-sc
 EOF
 
@@ -61,7 +61,7 @@ spec:
   accessModes:
     - ReadWriteMany
   capacity:
-    storage: 1Gi
+    storage: 11Mi
   storageClassName: vsphere-csi-sc
   volumeMode: Filesystem
 EOF
