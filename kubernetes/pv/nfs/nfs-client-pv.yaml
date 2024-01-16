@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-client-pv
+spec:
+  storageClassName: nfs-client-sc
+  capacity:
+    storage: 10Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: "dl2-fs01.my.local"
+    path: "/mnt/k8s-volume"
