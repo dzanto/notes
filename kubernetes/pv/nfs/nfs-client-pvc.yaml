@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: nfs-client-pvc
 spec:
-  storageClassName: nfs-client
+  storageClassName: vsphere-nfs
   accessModes:
     - ReadWriteMany
   resources:
