@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-ingress
+spec:
+  ports:
+    - name: tcp-redis
+      nodePort: 31000
+      port: 6379
+      protocol: TCP
+      targetPort: 6379
+    - name: tcp-sentinel
+      nodePort: 31001
+      port: 26379
+      protocol: TCP
+      targetPort: 26379
+  selector:
+    app.kubernetes.io/component: node
+    app.kubernetes.io/instance: redis-online
+    app.kubernetes.io/name: redis
+  sessionAffinity: None
+  type: NodePort
