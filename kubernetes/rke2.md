@@ -4,6 +4,9 @@ date: 2023-10-13T09:00:00+03:00
 draft: false
 tags: [rke2]
 ---
+
+journalctl -u rke2-agent.service -f
+
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 /var/lib/rancher/rke2/bin/kubectl get nodes
 
