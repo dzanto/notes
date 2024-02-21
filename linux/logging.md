@@ -15,6 +15,8 @@ dmesg -T - человеческое время
 
 ## journald
 
-journalctl -- list-boots
+journalctl --list-boots
 
 journalctl -b <-номер загрузки>
+
+journalctl --dmesg -b <-номер загрузки> -e
