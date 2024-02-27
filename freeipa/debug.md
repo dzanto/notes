@@ -9,3 +9,4 @@ less /var/log/krb5kdc.log
 /var/log/ipa/
 /var/log/dirsrv
 
+https://wiki.astralinux.ru/pages/viewpage.action?pageId=105972922&ysclid=lt42e2jygk713988844
