@@ -11,4 +11,4 @@ sed -i 's/my_string/my_new_string/g' my.file
 
 / - может быть заменен на любой другой разделитель, например - |
 
-sed -i -e "s|name: my-docker|name: my-harbor|" *
+sed -i -e "s|name: my-docker|name: my-harbor|" my.file
