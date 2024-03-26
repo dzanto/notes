@@ -92,3 +92,10 @@ DELETE _plugins/_security/api/cache
 GET _opendistro/_security/api/securityconfig
 GET _plugins/_security/api/internalusers
 ```
+
+
+### Удаление индексов
+Проверяем индекс 
+GET <my-index-*-2024-*>
+Удаляем
+DELETE <my-index-*-2024-*>

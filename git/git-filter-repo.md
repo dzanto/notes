@@ -1,3 +1,9 @@
+# удаление файла из git репозитория
+```sh
+dnf install git-filter-repo
+git filter-repo --invert-paths --path <path to the file or directory>
+```
+
 # Удаление секретов из git репозитория
 
 Перед выполнением работ необходимо сделать бэкап проекта с помощью экспорта. В настройках GitLab проекта.
