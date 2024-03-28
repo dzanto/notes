@@ -8,7 +8,14 @@ tags: [rke2]
 sudo journalctl -u rke2-agent.service -f
 
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
-/var/lib/rancher/rke2/bin/kubectl get nodes
+export PATH=$PATH:/var/lib/rancher/rke2/bin
+export CONTAINER_RUNTIME_ENDPOINT=unix:///run/k3s/containerd/containerd.sock
+export IMAGE_SERVICE_ENDPOINT=unix:///run/k3s/containerd/containerd.sock
+
+kubectl get nodes
+crictl pods
+crictl images
+crictl rmi --prune
 
 cilium status --verbose
 cilium-health status
