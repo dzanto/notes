@@ -48,3 +48,33 @@ spec:
   watchNamespaces:
     - my-load
 ```
+
+
+## Fluentd
+```yaml
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Output
+metadata:
+  name: soc-syslog-output
+  namespace: keycloak
+spec:
+  syslog:
+    # https://kube-logging.dev/docs/configuration/plugins/outputs/buffer/
+    # https://docs.fluentd.org/configuration/buffer-section
+    buffer:
+      flush_at_shutdown: true
+      flush_mode: default
+      flush_thread_count: 2
+      retry_forever: false
+      timekey: 600s
+      timekey_wait: 0s
+      total_limit_size: 3G
+    format:
+      app_name_field: kubernetes.pod_name
+      hostname_field: keycloak
+      rfc6587_message_size: false
+    host: 192.168.10.100
+    insecure: true
+    port: 514
+    transport: udp
+```
