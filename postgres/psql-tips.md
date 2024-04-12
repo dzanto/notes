@@ -14,6 +14,8 @@ psql
 - `SELECT rolname FROM pg_roles;` - список ролей
 - \с bd_name - переключиться на базу
 - \dn - список схем
+- \dp - список привилегий. можно посмотреть для объекта \dp test.test или \dp my_user
+- \dt *.* - список таблиц во всех схемах
 
 # Обновление данных. Команда UPDATE
 https://metanit.com/sql/postgresql/3.4.php
