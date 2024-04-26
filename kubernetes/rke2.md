@@ -7,6 +7,8 @@ tags: [rke2]
 
 sudo journalctl -u rke2-agent.service -f
 
+journalctl -efu rancher-system-agent
+
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 export PATH=$PATH:/var/lib/rancher/rke2/bin
 export CONTAINER_RUNTIME_ENDPOINT=unix:///run/k3s/containerd/containerd.sock
