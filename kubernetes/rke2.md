@@ -16,7 +16,12 @@ export IMAGE_SERVICE_ENDPOINT=unix:///run/k3s/containerd/containerd.sock
 
 kubectl get nodes
 crictl pods
+crictl ps --all
+crictl logs -f container_id
+crictl inspect container_id1
+crictl exec -it container_id sh
 crictl images
+crictl pull image:tag
 crictl rmi --prune
 
 cilium status --verbose
@@ -52,3 +57,16 @@ kubectl -n cattle-system delete service webhook-service
 
 kubectl delete secret -n cattle-system cattle-webhook-tls
 kubectl delete pod -n cattle-system -l app=rancher-webhook
+
+### etcd
+```sh
+# заходим на мастер
+crictl ps --all | grep etcd
+crictl exec -it 83b39c733af50 bash
+
+# список нод
+etcdctl --cert /var/lib/rancher/rke2/server/tls/etcd/server-client.crt --key /var/lib/rancher/rke2/server/tls/etcd/server-client.key --endpoints https://127.0.0.1:2379 --cacert /var/lib/rancher/rke2/server/tls/etcd/server-ca.crt member list -w table
+
+#удаляем ноду
+etcdctl --cert /var/lib/rancher/rke2/server/tls/etcd/server-client.crt --key /var/lib/rancher/rke2/server/tls/etcd/server-client.key --endpoints https://127.0.0.1:2379 --cacert /var/lib/rancher/rke2/server/tls/etcd/server-ca.crt member remove <node-id from previous cmd>
+```
