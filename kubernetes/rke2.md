@@ -41,6 +41,21 @@ nmcli con mod ens33 ethtool.feature-tx-udp_tnl-segmentation off ethtool.feature-
 ### Восстановление из бэкапа
 Проверяем инструкцию: https://docs.rke2.io/backup_restore
 
+Бэкапим:
+- /var/lib/rancher/rke2/server/{cred,tls,token}
+- /etc/rancher/rke2
+- etcd bd snapshots
+```sh
+curl -sfL https://get.rke2.io | INSTALL_RKE2_VERSION="v1.27.11-rke2r1" sh -
+
+cp -R rancher/rke2/* /etc/rancher/rke2/
+
+rke2 server \
+  --cluster-reset \
+  --cluster-reset-restore-path=/root/15-06-2024-backup/snapshots/etcd-snapshot-rancher1.infra.int.nloto.ru-1718269204 \
+  --token XXXXXXXXXXXXXXXX::server:xxxxxxxxxxxxxxxxxxx
+```
+
 На первой ноде после запуска rke2-server была ошибка:
 
 > Error from server (InternalError): Internal error occurred: failed calling webhook "rancher.cattle.io.namespaces.create-non-kubesystem": failed to call webhook: Post "https://rancher-webhook.cattle-system.svc:443/v1/webhook/validation/namespaces?timeout=10s": no endpoints available for service "rancher-webhook"
